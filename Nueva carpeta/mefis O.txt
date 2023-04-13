@@ -1,0 +1,11 @@
+Resultados para: Lección 10 del curso MecaNet
+Realizado el jueves, 24 de noviembre de 2022 a las 11:43 AM
+
+PPM: 88
+Tiempo: 21 m. 53 sg.
+Nº de errores: 318 (14%)
+Nº de aciertos: 1932 (86%)
+Nota: 33 (sobre 100)
+
+
+Estos resultados no son buenos, deberías mejorarlos.
