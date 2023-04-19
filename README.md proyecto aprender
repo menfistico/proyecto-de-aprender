@@ -1,0 +1,59 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaurio crome</title>
+
+<style>
+
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+body{
+    height:100vh;
+    background: rgb(64, 88, 64);
+    display: flex;
+    align-items: center;
+    
+}
+.conenedor {
+    width: 920px;
+    height: 280%;
+    margin: 0 auto;
+
+    position: relative;
+    
+    background: linear-gradient(#b7d6c7, #ffe2d1);
+
+}
+.dino{
+width: 84%;
+height: 84%;
+
+position: absolute;
+bottom: 22px;;
+left: 42px;
+z-index: 2;
+
+background: url(dino.pgp)repeat-x 0px 0px;
+background-size: 336px 84px;
+background-position-x:0px
+}
+
+
+</style>
+</head>
+<body> 
+ <div class="contenedor">
+        <div class="suelo"></div>
+        
+        <div class="dino"></div>
+        
+        <div class="score"></div>
+ </div>
+ </body>
+ <html>
