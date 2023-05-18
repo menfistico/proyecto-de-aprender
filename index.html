@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaurio Chrome</title>
+
+    <style>
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    height:100vh;
+    background: rgb(64, 88, 64);
+    display: flex;
+    align-items: center;
+
+    
+}
+
+.contenedor {
+    width: 920px;
+    height: 280px;
+    margin: 0 auto;
+    position: relative;
+
+    background: linear-gradient(#b7d6c7, #ffe2d1);
+
+    overflow: hidden;
+}
+
+.dino{
+width: 84px;
+height: 84px;
+
+position: absolute;
+bottom: 22px;;
+left: 42px;
+z-index: 2;
+
+background: url(dino.png) repeat-x 0px 0px;
+background-size: 336px 84px;
+background-position-x: 0px
+}
+
+.dino-corriendo{
+    animation: animarDino 0.25s steps(2) infinite;
+}
+
+.dino-estrellado{
+    background:-position-x
+}
+
+.suelo{
+    width: 200%;
+    height: 42px;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    background: url(suelo.png) repeat-x 0px 0px;
+    background-size: 50% 42px;
+}
+
+
+.score{
+    width: 100px;
+    height: 30px;
+
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    z-index: 10;
+
+    color: #D48872;
+    font-family: Verdana;
+    font-size: 30PX;
+    font-weight: bold;
+    text-align: right;
+}
+
+.cactus{
+    width: 46px;
+    height: 96px;
+
+    position: absolute;
+    bottom: 16px;
+    left: 600px;
+    z-index: 1;
+
+    background: url(cactus1.png) no-repeart
+}
+@keyframes animarDino{
+    from{
+        background-position-x: -84px;
+    }
+    to{
+        background-position-x: -252px;
+    }
+}
+
+
+</style>
+    </style>
+</head>
+<body> 
+ <div class="contenedor">
+    <div class="contenedor">
+        <div class="suelo"></div>
+
+        <div class="dino dino-corriendo"></div>
+
+        <div class="score"></div>
+ </div>
+ </body>
+ <html> 
+        <div class="score">0</div>
+    </div> 
+
+<script type='text/javascript'>
+//** GAME LOOP ***//
+
+
+var time = new Date();
+var deltaTime = 0;
+console.log("wait")
+
+if(document.readyState=== "complete" || document.readyState=== "interactive"){
+    console.log("if")
+    setTimeout(Init,1);
+}else{
+    console.log("else")
+    document.addEventListener("DOMContentLoaded", Init);
+}
+function Init() {
+    console.log("Init")
+    time = new Date();
+    Start();
+    Loop();
+}
+function Loop(){
+    console.log("loop")
+    deltaTime = (new Data() - time) / 1000;
+    time = new Date();
+    update()
+    requestAnimationFrame(Loop);
+}
+//** NUESTRO JUEGO VA AQUÍ**//
+
+
+ var sueloY = 22;
+ var velY = 0;
+ var impulso = 900;
+ var gravedad = 2500;
+
+ var dinoPosX = 42;
+ var dinoPosY = sueloY;
+
+ var sueloX = 0;
+ var velEscenario = 1280/3;
+ var gameVel = 1;
+ var score = 0;
+
+ var parado = false;
+ var saltando = false;
+
+ var tiempoHastaObstacuulo = 2;
+ var tiempoObstaculoMin = 0.7;
+ var tiempoObstaculoMax = 1.8;
+ var obstaculoPosy = 16;
+ var obstaculos = [];
+
+ var contenedor;
+ var dino;
+ var textoScore; 
+ var suelo;
+ var gameOver;
+
+
+
+function Start() {
+    gameOver = document.querySelector(".game-over");
+    suelo = document.querySelector(".suelo");
+    contenedor = document.querySelector(".contenedor");
+    textoScore = documen.querySelector(".score");
+    dino = document.querySelector(".dino")
+
+}
+
+function HandleKeyDown(ev){
+    if(ev.keycode == 32){
+        saltar();
+    }
+}
+
+function saltar(){
+    if(dinoPosY === sueloY) {
+        saltando = true;
+        velY = impulso;
+        dino.classlit.remove("dino-corriendo");
+    }
+}
+
+function update() {
+
+    MoverSuelo();
+    moverDnosaurio();
+    decdircrearObstaculos();
+    moverObstaculos();
+    Detectarcolision();
+
+    velY -= gravedad * deltaTime;
+}
+
+function MoverSuelo(){
+    sueloX += CalcularDesplazamiento();
+    suelo.style.left = -(sueloX % contenedor.clientwidth) + "px";
+}
+
+function CalcularDesplazamiento() {
+    return velEscenario * deltaTime * gameVel;
+}
+
+function moverDinosaurio() {
+    dinoPosY += velY * deltaTime;
+    if(dinoPosY < sueloY){
+         tocarSuelo();
+    }
+    dino.style.bottom = dinoPosY+"px";
+}
+
+function TocarSuelo(){
+    dinoPosY = sueloY;
+    vely = 0;
+    if(saltando){
+        dino.classList.add("dino corriendo");
+    }
+    saltando = false;
+}
+
+function DecidirCrearObtaculos() {
+    tiempoHastaObstaculo -= deltaTime;
+    if(tiempoHastaObstaculo <= 0){
+        crearObstaculo();
+    }
+}
+    
+function crearObstaculo() {
+    var obstaculos = document.crearElment("div");
+    contenedor.appendChild( oBstaculos);
+    obstaculos.classList.add("cactus");
+    opstaculo.posX = contenedor.cliantwidth;
+    obstaculo.style.left = contenedor.clientwidth+"px";
+
+    obstaculos.push(obstaculo);
+    tiempoHastaObstaculo = tiempoHastaObstaculoMin + Math.random()*
+    (tiempoObstaculoMax-tiempoObstaculoMin) / grameVel;
+}
+
+function moverObstaculos(){
+    for(var i = obstaculos.length - 1; i >= 0; i--) {
+        if(obstaculos[i].posX < - obstaculos[i].clientwidth){
+         obstaculos[i].parentNode.removerChild(obstaculos[i]);
+         obstaculos.splice(i,1);
+         Ganarpuntos();
+        }else{
+            obstaculos[i].posX -= CalcularDesplazamiento();
+            obstaculos[i].style.left = obstaculos[i].posX+"px";
+        }
+    }
+}
