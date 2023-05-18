@@ -116,8 +116,8 @@ background-position-x: 0px
 
         <div class="score"></div>
  </div>
- </body>
- <html> 
+ 
+ 
         <div class="score">0</div>
     </div> 
 
@@ -144,7 +144,7 @@ function Init() {
 }
 function Loop(){
     console.log("loop")
-    deltaTime = (new Data() - time) / 1000;
+    deltaTime = (new Date() - time) / 1000;
     time = new Date();
     update()
     requestAnimationFrame(Loop);
@@ -186,7 +186,7 @@ function Start() {
     gameOver = document.querySelector(".game-over");
     suelo = document.querySelector(".suelo");
     contenedor = document.querySelector(".contenedor");
-    textoScore = documen.querySelector(".score");
+    textoScore = document.querySelector(".score");
     dino = document.querySelector(".dino")
 
 }
@@ -208,7 +208,7 @@ function saltar(){
 function update() {
 
     MoverSuelo();
-    moverDnosaurio();
+    moverDinosaurio();
     decdircrearObstaculos();
     moverObstaculos();
     Detectarcolision();
@@ -273,3 +273,8 @@ function moverObstaculos(){
         }
     }
 }
+</script>
+</body>
+</html>
+
+
